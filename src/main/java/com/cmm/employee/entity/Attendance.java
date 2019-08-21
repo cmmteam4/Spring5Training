@@ -6,7 +6,10 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +17,9 @@ import javax.persistence.Table;
 public class Attendance {
 
 	@Id
-	@GeneratedValue
-	public Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "att_id")
+	public Long att_id;
 
 	@Column(name = "employee_id")
 	public String employee_id;
@@ -44,12 +48,16 @@ public class Attendance {
 	@Column(name = "updated_date")
 	public Timestamp updated_date;
 
-	public Long getId() {
-		return id;
+	@ManyToOne
+	@JoinColumn(name = "emp_id")
+	private Employee emp;
+
+	public Long getAtt_id() {
+		return att_id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setAtt_id(Long att_id) {
+		this.att_id = att_id;
 	}
 
 	public String getEmployee_id() {
@@ -124,4 +132,13 @@ public class Attendance {
 		this.updated_date = updated_date;
 	}
 
+	public Employee getEmp() {
+		return emp;
+	}
+
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+
+	
 }
