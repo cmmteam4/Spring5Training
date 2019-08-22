@@ -1,5 +1,6 @@
 package com.cmm.employee.entity;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "attendance")
@@ -25,7 +28,8 @@ public class Attendance {
 	public String employee_id;
 
 	@Column(name = "date")
-	public String date;
+	@DateTimeFormat(pattern = "YYYY-MM-DD")
+	public Date date;
 
 	@Column(name = "day")
 	public String day;
@@ -49,7 +53,7 @@ public class Attendance {
 	public Timestamp updated_date;
 
 	@ManyToOne
-	@JoinColumn(name = "emp_id")
+	@JoinColumn(name = "emp_id", nullable = false)
 	private Employee emp;
 
 	public Long getAtt_id() {
@@ -68,11 +72,11 @@ public class Attendance {
 		this.employee_id = employee_id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -140,5 +144,4 @@ public class Attendance {
 		this.emp = emp;
 	}
 
-	
 }

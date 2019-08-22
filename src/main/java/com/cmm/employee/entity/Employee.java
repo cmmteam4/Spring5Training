@@ -1,5 +1,6 @@
 package com.cmm.employee.entity;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -10,11 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "employee")
-@XmlRootElement
 public class Employee {
 
 	@Id
@@ -29,7 +29,8 @@ public class Employee {
 	public String employee_name;
 
 	@Column(name = "date_of_birth")
-	public String date_of_birth;
+	@DateTimeFormat(pattern = "YYYY-MM-DD")
+	public Date date_of_birth;
 
 	@Column(name = "age")
 	public int age;
@@ -42,7 +43,7 @@ public class Employee {
 
 	@Column(name = "def_flg")
 	public int def_flg;
-	
+
 	@Column(name = "password")
 	public String password;
 
@@ -52,9 +53,8 @@ public class Employee {
 	@Column(name = "updated_date")
 	public Timestamp updated_date;
 
-	@OneToMany( mappedBy = "emp")
+	@OneToMany(mappedBy = "emp")
 	private Set<Attendance> attendance;
-	
 
 	public long getEmp_id() {
 		return emp_id;
@@ -80,11 +80,11 @@ public class Employee {
 		this.employee_name = employee_name;
 	}
 
-	public String getDate_of_birth() {
+	public Date getDate_of_birth() {
 		return date_of_birth;
 	}
 
-	public void setDate_of_birth(String date_of_birth) {
+	public void setDate_of_birth(Date date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 
@@ -152,7 +152,6 @@ public class Employee {
 		this.attendance = attendance;
 	}
 
-	
 
-	
+
 }
