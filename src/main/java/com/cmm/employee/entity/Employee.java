@@ -1,6 +1,5 @@
 package com.cmm.employee.entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "employee")
@@ -28,9 +26,8 @@ public class Employee {
 	@Column(name = "employee_name")
 	public String employee_name;
 
-	@Column(name = "date_of_birth")
-	@DateTimeFormat(pattern = "YYYY-MM-DD")
-	public Date date_of_birth;
+	@Column(name = "dateOfBirth")
+	public String dateOfBirth;
 
 	@Column(name = "age")
 	public int age;
@@ -80,12 +77,12 @@ public class Employee {
 		this.employee_name = employee_name;
 	}
 
-	public Date getDate_of_birth() {
-		return date_of_birth;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDate_of_birth(Date date_of_birth) {
-		this.date_of_birth = date_of_birth;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public int getAge() {
@@ -150,8 +147,6 @@ public class Employee {
 
 	public void setAttendance(Set<Attendance> attendance) {
 		this.attendance = attendance;
-	}
-
-
-
+	}	
+	
 }
