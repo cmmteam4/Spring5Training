@@ -20,7 +20,6 @@ import com.cmm.employee.entity.Employee;
 import com.cmm.employee.services.EmployeeService;
 
 @Controller
-
 public class EmpController {
 	@Autowired
 	private EmployeeService empService;
