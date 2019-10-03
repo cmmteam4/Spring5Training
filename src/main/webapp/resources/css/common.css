@@ -1,0 +1,59 @@
+.main {
+	margin-left: 200px; 	
+	font-size: 16px; 
+	padding: 12px 0px;		
+}
+
+.sidenav {
+	height: 100%;
+	width: 200px;
+	position: absolute;
+	z-index: 1;
+	top: 50px;
+	left: 0;
+	background-color: #EAFAF1;
+	overflow-x: hidden;
+	padding-top: 20px;
+	border-right: 2px solid lightgray;
+}
+
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	font-size: 17px;
+	color: blue;
+	display: block;
+	text-decoration: underline;
+}
+
+.topnav {
+	background-color: #EAFAF1;
+	border-bottom: 2px solid lightgray;
+	height: 50px;
+}
+
+.topnav a {
+	float: right;
+	color: blue;
+	text-decoration: underline;
+	margin-right: 20px;	
+}
+
+span {
+	color: red;
+}
+
+textarea {
+	resize: none;
+}
+th {
+	font-weight: normal;
+}
+#editlink{
+	cursor: pointer;
+}
+#disablepassword{
+	pointer-events:none;
+	background-color: lightgrey;
+}
+
+

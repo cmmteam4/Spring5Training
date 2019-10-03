@@ -1,0 +1,65 @@
+#box {
+	background-color: lightgray;
+	text-align: center;
+}
+
+.row {
+	margin-left: -5px;
+}
+
+.btn_size1 {
+	padding: 0px 15px;
+	margin: 3px;
+}
+
+.btn_size2 {
+	padding: 0px 24px;
+}
+
+.table th {
+	border: 1px solid grey;
+	padding: .25rem;
+}
+
+.table td {
+	border: 1px solid grey;
+	padding: 0px;
+	vertical-align: middle;
+}
+
+.btnexcel {
+	padding: 5px 19px;
+}
+
+#SatSun {
+	background-color: lightgrey;
+	height: 50px;
+}
+
+#late {
+	background-color: lightgrey;
+	color: red;
+}
+
+#OT {
+	background-color: lightgrey;
+	color: blue;
+}
+
+#TableHead {
+	background-color: lightblue;
+}
+
+#TableBody {
+	height: 50px;
+}
+
+
+.col-md-3 {
+   
+    margin-top: 14px;
+}
+
+.list a{
+	pading-left: 25px;
+}

@@ -1,14 +1,14 @@
-package com.cmm.employee.dao;
-
-import com.cmm.employee.entity.Employee;
+package com.cmm.employee.services;
 
 import java.util.List;
 
-public interface EmployeeDao {
+import com.cmm.employee.entity.Employee;
+
+public interface EmployeeService {
 
 	public List<Employee> getEmployee();
 
-	public void saveEmployee(Employee employee);
+	void saveEmployee(Employee employee);
 
 	public void deleteEmployee(Integer employeeId);
 
@@ -19,5 +19,6 @@ public interface EmployeeDao {
 	
 
 	
-
+	
+	
 }

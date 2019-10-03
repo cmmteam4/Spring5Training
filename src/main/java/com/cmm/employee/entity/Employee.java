@@ -1,6 +1,5 @@
 package com.cmm.employee.entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -11,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -20,7 +22,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "emp_id")
-	public long emp_id;
+	public int emp_id;
 
 	@Column(name = "employee_id")
 	public String employee_id;
@@ -29,8 +31,7 @@ public class Employee {
 	public String employee_name;
 
 	@Column(name = "date_of_birth")
-	@DateTimeFormat(pattern = "YYYY-MM-DD")
-	public Date date_of_birth;
+	public String dateOfBirth;
 
 	@Column(name = "age")
 	public int age;
@@ -46,21 +47,25 @@ public class Employee {
 
 	@Column(name = "password")
 	public String password;
-
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
-	public Timestamp created_date;
-
+	@DateTimeFormat(pattern="yyyy/mm/dd hh:mm:ss")
+	protected java.util.Date created_date;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date")
-	public Timestamp updated_date;
+	@DateTimeFormat(pattern="yyyy/mm/dd hh:mm:ss")
+	protected java.util.Date updated_date;
 
 	@OneToMany(mappedBy = "emp")
-	private Set<Attendance> attendance;
+	private Set<Attendance> attendance;	
 
-	public long getEmp_id() {
+	public int getEmp_id() {
 		return emp_id;
 	}
 
-	public void setEmp_id(long emp_id) {
+	public void setEmp_id(int emp_id) {
 		this.emp_id = emp_id;
 	}
 
@@ -80,12 +85,12 @@ public class Employee {
 		this.employee_name = employee_name;
 	}
 
-	public Date getDate_of_birth() {
-		return date_of_birth;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDate_of_birth(Date date_of_birth) {
-		this.date_of_birth = date_of_birth;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public int getAge() {
@@ -126,21 +131,21 @@ public class Employee {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}	
 
-	public Timestamp getCreated_date() {
+	public java.util.Date getCreated_date() {
 		return created_date;
 	}
 
-	public void setCreated_date(Timestamp created_date) {
+	public void setCreated_date(java.util.Date created_date) {
 		this.created_date = created_date;
 	}
 
-	public Timestamp getUpdated_date() {
+	public java.util.Date getUpdated_date() {
 		return updated_date;
 	}
 
-	public void setUpdated_date(Timestamp updated_date) {
+	public void setUpdated_date(java.util.Date updated_date) {
 		this.updated_date = updated_date;
 	}
 
@@ -151,7 +156,5 @@ public class Employee {
 	public void setAttendance(Set<Attendance> attendance) {
 		this.attendance = attendance;
 	}
-
-
-
+	
 }
