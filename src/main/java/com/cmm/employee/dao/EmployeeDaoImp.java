@@ -2,7 +2,9 @@ package com.cmm.employee.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -43,9 +45,33 @@ public class EmployeeDaoImp implements EmployeeDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Employee> searchEmployee(String name) {
-			// TODO Auto-generated method stub
-			return sessionFactory.getCurrentSession().createQuery("from Employee where employee_name like '%"+name+"%' ").list();
-			
+	public List<Employee> getEmployeeBy(String col, String valueOf) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Employee where "+col+" like '%"+valueOf+"%' ").list();
+	}
+
+	public boolean checkLogin(String employee_id, String password) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		boolean userFound = false;
+		Query query = sessionFactory.getCurrentSession().createQuery("from Employee emp where emp.employee_id like :employee_id and emp.password like :password");
+		query.setParameter("employee_id", "%" + employee_id + "%");
+		query.setParameter("password","%" + password + "%");
+		List list = query.list();
+		if ((list != null) && (list.size() > 0)) {
+			userFound= true;
 		}
+		session.close();
+		return userFound;  
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -51,8 +51,8 @@ th {
 #editlink{
 	cursor: pointer;
 }
-#disablepassword{
-	pointer-events:none;
+#password{
+	pointer-events: none;
 	background-color: lightgrey;
 }
 

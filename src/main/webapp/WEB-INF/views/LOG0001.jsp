@@ -16,7 +16,7 @@
 	<div class="d-flex justify-content-center loginbox">
 		<div class="col-sm-4">
 		<h2 align="center">Login</h2><br>
-			<form:form method="POST" action="loginEmp" modelAttribute="emplogin"
+			<form:form method="POST" action="menu" modelAttribute="emplogin"
 				class="form-horizontal">
 
 				<div class="form-group row">

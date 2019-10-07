@@ -19,8 +19,8 @@
 	//function and design for password in Edit form 
 	document.getElementById("editlink").style.cursor = "pointer";
 	function enable() {
-		document.getElementById('password').style.backgroundColor = "white";
-		document.getElementById('password').style.pointerEvents = "auto";
+		document.getElementById('disablepassword').style.backgroundColor = "white";
+		document.getElementById('disablepassword').style.pointerEvents = "auto";
 	}
 	
 	//Calculate Age and DateOfBirth Pattern
@@ -81,7 +81,7 @@
 					<form:label path="password" class="col-sm-4 col-form-label">Password (<span>*</span>)</form:label>
 					<div class="col-sm-4">
 						<form:input path="password" class="form-control form-control-sm"
-							id="disablepassword" />
+							id="password" />
 					</div>
 				</div>
 				<%
@@ -92,7 +92,7 @@
 					<form:label path="password" class="col-sm-4 col-form-label">Password (<span>*</span>)</form:label>
 					<div class="col-sm-4">
 						<form:input showPassword="true" path="password"
-							class="form-control form-control-sm" id="password" />
+							class="form-control form-control-sm" id="disablepassword" />
 					</div>
 					<div class="col-sm-2">
 						<a id="editlink" onclick="enable()"><u>Edit</u></a>

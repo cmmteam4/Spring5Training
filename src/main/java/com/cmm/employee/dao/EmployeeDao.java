@@ -14,7 +14,15 @@ public interface EmployeeDao {
 
 	public Employee getEmployee(int emp_id);
 
-	public List<Employee> searchEmployee(String name);
+	public List<Employee> getEmployeeBy(String col, String valueOf);
+
+	public boolean checkLogin(String employee_id, String password);
+
+	
+
+	
+
+	
 
 	
 

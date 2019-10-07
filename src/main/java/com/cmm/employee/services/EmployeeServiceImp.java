@@ -40,11 +40,22 @@ public class EmployeeServiceImp implements EmployeeService {
 		return empDao.getEmployee(emp_id);
 	}
 
-	public List<Employee> searchEmployee(String name) {
+	public List<Employee> getEmployeeBy(String col, String valueOf) {
 		// TODO Auto-generated method stub
-		return empDao.searchEmployee(name);
+		return empDao.getEmployeeBy(col,valueOf);
+	}
+	
+	@Transactional
+	public boolean checkLogin(String employee_id, String password) {
+		// TODO Auto-generated method stub
+		return empDao.checkLogin(employee_id,password);
 	}
 
+	
+
+	
+
+	
 	
 	
 

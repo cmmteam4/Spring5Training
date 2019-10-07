@@ -47,7 +47,7 @@
 					<form:label path="employee_name" class="col-sm-5 col-form-label">Employee Name</form:label>
 					<div class="col-sm-7">
 						<form:input path="employee_name"
-							class="form-control form-control-sm" value="${param.employee_name}" />
+							class="form-control form-control-sm" />
 					</div>
 				</div>
 				
