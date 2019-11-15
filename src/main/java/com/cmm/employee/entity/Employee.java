@@ -1,7 +1,6 @@
 package com.cmm.employee.entity;
 
-import java.sql.Timestamp;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,45 +21,47 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "emp_id")
-	public int emp_id;
+	private int emp_id;
 
 	@Column(name = "employee_id")
-	public String employee_id;
+	private String employee_id;
 
 	@Column(name = "employee_name")
-	public String employee_name;
+	private String employee_name;
 
 	@Column(name = "date_of_birth")
-	public String dateOfBirth;
+	private String dateOfBirth;
 
 	@Column(name = "age")
-	public int age;
+	private int age;
 
 	@Column(name = "gender")
-	public String gender;
+	private String gender;
 
 	@Column(name = "note")
-	public String note;
+	private String note;
 
 	@Column(name = "def_flg")
-	public int def_flg;
+	private int def_flg;
 
 	@Column(name = "password")
 	public String password;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
-	@DateTimeFormat(pattern="yyyy/mm/dd hh:mm:ss")
-	protected java.util.Date created_date;
-	
+	@DateTimeFormat(pattern = "yyyy/mm/dd hh:mm:ss")
+	protected Date created_date;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date")
-	@DateTimeFormat(pattern="yyyy/mm/dd hh:mm:ss")
-	protected java.util.Date updated_date;
+	@DateTimeFormat(pattern = "yyyy/mm/dd hh:mm:ss")
+	protected Date updated_date;
 
 	@OneToMany(mappedBy = "emp")
-	private Set<Attendance> attendance;	
+	private Set<Attendance> attendance;
 
+
+	
 	public int getEmp_id() {
 		return emp_id;
 	}
@@ -131,21 +132,21 @@ public class Employee {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
 
-	public java.util.Date getCreated_date() {
+	public Date getCreated_date() {
 		return created_date;
 	}
 
-	public void setCreated_date(java.util.Date created_date) {
+	public void setCreated_date(Date created_date) {
 		this.created_date = created_date;
 	}
 
-	public java.util.Date getUpdated_date() {
+	public Date getUpdated_date() {
 		return updated_date;
 	}
 
-	public void setUpdated_date(java.util.Date updated_date) {
+	public void setUpdated_date(Date updated_date) {
 		this.updated_date = updated_date;
 	}
 
@@ -156,5 +157,13 @@ public class Employee {
 	public void setAttendance(Set<Attendance> attendance) {
 		this.attendance = attendance;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Employee [emp_id=" + emp_id + ", employee_id=" + employee_id + ", employee_name=" + employee_name
+				+ ", dateOfBirth=" + dateOfBirth + ", age=" + age + ", gender=" + gender + ", note=" + note
+				+ ", def_flg=" + def_flg + ", password=" + password + ", created_date=" + created_date
+				+ ", updated_date=" + updated_date + ", attendance=" + attendance + "]";
+	}
+
 }

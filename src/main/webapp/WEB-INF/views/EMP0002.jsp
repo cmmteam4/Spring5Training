@@ -25,6 +25,12 @@
 		}
 
 	});
+
+	function year() {
+		Calendar
+		calendar = Calendar.getInstance();
+
+	}
 </script>
 </head>
 <body>
@@ -34,7 +40,7 @@
 	</div>
 
 	<div class="topnav">
-		<a href="#">Logout</a> <a>Employee ID:<br>Employee Name:
+		<a href="logout">Logout</a> <a>Employee ID:${auth.employee_id}<br>Employee Name:${auth.employee_name}
 		</a> <br>
 	</div>
 
@@ -50,31 +56,40 @@
 							class="form-control form-control-sm" />
 					</div>
 				</div>
-				
-				
+
+
 
 				<div class="form-group row">
 					<form:label path="dateOfBirth" class="col-sm-5 col-form-label">Date Of
 						Birth</form:label>
-						
+
 					<div class="col-sm-3">
+					<%@ page import="java.util.Calendar"%>
 						<form:select class="form-control form-control-sm"
-							path="dateOfBirth">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+							path="dateOfBirth" name="year">
+							<option value="0">Year</option>
+							<%
+							int curr_year = Calendar.getInstance().get(Calendar.YEAR);
+								for (int year = 1970; year <= curr_year; year++){
+							%>
+							<option><%= year %></option>
+							
+							<%
+								}							
+							%>
 						</form:select>
 					</div>
 					<div class="col-sm-2">
 						<form:select class="form-control form-control-sm"
 							path="dateOfBirth">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+							<option value="0">Month</option>
+							<%							
+								for (int month = 1; month <= 12; month++){
+							%>
+							<option><%= month %></option>
+							<%
+								}							
+							%>
 						</form:select>
 					</div>
 				</div>
@@ -98,70 +113,88 @@
 					</div>
 				</div>
 
-				<div class="form-group row" >
+				<div class="form-group row" style="position: absolute; left: 202px;">
 					<label for="button" class="col-sm-5 col-form-label"> </label>
 					<div class="col-sm-7">
 						<button type="submit" class="btn btn-secondary btn-sm">Search</button>
 					</div>
 				</div>
 			</form:form>
-		</div>
-	</div>
 
-	<!-- Delete Employee Form -->
-	<form:form method="POST" action="deleteEmp"
-		modelAttribute="employeeDelete">
-		<div class="form-group row" >
-			<div class="col-sm-7">
-				<label for="button" class="col-sm-5 col-form-label"> </label>
-				<button type="button" class="btn btn-secondary btn-sm">Cancel</button>
-				<button type="submit" class="btn btn-secondary btn-sm">Delete</button>
-				<button type="button" class="btn btn-secondary btn-sm">Excel</button>
-				<button type="button" class="btn btn-secondary btn-sm">Report</button>
-			</div>
-		</div>
+			<!-- Delete Employee Form -->
+			<form:form method="POST" action="deleteEmp"
+				modelAttribute="employeeDelete">
+				<div class="form-group row">
+					<label for="button" class="col-sm-5 col-form-label"> </label>
+					<div class="col-sm-7"
+						style="position: relative; left: 80px; padding: 0;">
+						<button type="button" class="btn btn-secondary btn-sm">Cancel</button>
+						<button type="submit" class="btn btn-secondary btn-sm">Delete</button>
+						<button type="button" class="btn btn-secondary btn-sm">Excel</button>
+					</div>
+				</div>
 
+				<!-- EmployeeListTable -->
+				<div class="form-group row">
+					<div class="col-sm-16">
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-bordered table-hover table-striped"
+								class="table table-bordered table-striped mb-0">
+								<tr style="background-color: #EAFAF1; height: 10px;"
+									align="center">
+									<th>No</th>
+									<th>Check</th>
+									<th>Edit</th>
+									<th>EmployeeID</th>
+									<th>EmployeeName</th>
+									<th>DateOfBirth</th>
+									<th>Age</th>
+									<th>Gender</th>
+									<th>Note</th>
+									<!--  <th>Delete</th>-->
 
-		<!-- EmployeeListTable -->
-		<div class="searchTable">
-			<div class="col-sm-11">
-				<div class="table-wrapper-scroll-y my-custom-scrollbar">
-					<table class="table table-bordered table-hover table-striped"
-						class="table table-bordered table-striped mb-0">
-						<tr style="background-color: #EAFAF1; height: 10px;"
-							align="center">
-							<th>No</th>
-							<th>Check</th>
-							<th>Edit</th>
-							<th>EmployeeID</th>
-							<th>EmployeeName</th>
-							<th>DateOfBirth</th>
-							<th>Age</th>
-							<th>Gender</th>
-							<th>Note</th>
-							<!--  <th>Delete</th>-->
-
-						</tr>
-						<c:forEach var="emplist" items="${ListEmp}"
-							varStatus="loopCounter">
-							<tr align="center">
-								<td><c:out value="${loopCounter.count}" /></td>
-								<td><input type="checkbox" class="chkId"
-									value="${emplist.emp_id}" name="emp_id"></td>
-								<td><a href="editEmployee?id=${emplist.emp_id}"><u>Edit</u></a></td>
-								<td>${emplist.employee_id}</td>
-								<td>${emplist.employee_name}</td>
-								<td>${emplist.dateOfBirth}</td>
-								<td>${emplist.age}</td>
-								<td>${emplist.gender}</td>
-								<td align="left">${emplist.note}</td>
-								<!--<td><a href="deleteEmp?id=${emplist.emp_id}">Delete</a></td>-->
+								</tr>
+								<c:forEach var="emplist" items="${ListEmp}"
+									varStatus="loopCounter">
+									<tr align="center">
+										<td width="6%"><c:out value="${loopCounter.count}" /></td>
+										<td width="6%"><input type="checkbox" class="chkId"
+											value="${emplist.emp_id}" name="emp_id"></td>
+										<td><a href="editEmployee?id=${emplist.emp_id}"><u>Edit</u></a></td>
+										<td>${emplist.employee_id}</td>
+										<td>${emplist.employee_name}</td>
+										<td>${emplist.dateOfBirth}</td>
+										<td>${emplist.age}</td>
+										<td>${emplist.gender}</td>
+										<td id="notewidth" align="left">${emplist.note}</td>
+										
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+				</div>
+			</form:form>
+			
+			
+			<!-- Display employee list -->
+			<div class="d-flex justify-content-center mb-3">
+				<c:if test="${!empty search_list}">
+					<table class="table table-sm">
+						<c:forEach var="sd" items="${search_list}">
+							<tr>
+								<td align="center">${sd.employee_id}</td>
+								<td align="center">${sd.employee_name}</td>
+								<td align="center">${sd.dateOfBirth}</td>
 							</tr>
 						</c:forEach>
 					</table>
-				</div>
+				</c:if>
+				<c:if test="${empty search_list}">
+					<h4>Not match data is found!.</h4>
+				</c:if>
 			</div>
 		</div>
-	</form:form>
+	</div>
 </body>
 </html>

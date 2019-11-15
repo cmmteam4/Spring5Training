@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,16 +31,16 @@ public class Attendance {
 
 	@Column(name = "date")
 	@DateTimeFormat(pattern = "YYYY-MM-DD")
-	public Date date;
+	public String date;
 
 	@Column(name = "day")
 	public String day;
 
 	@Column(name = "in_time")
-	public Time in_time;
+	public String in_time;
 
 	@Column(name = "out_time")
-	public Time out_time;
+	public String out_time;
 
 	@Column(name = "in_time_reason")
 	public String in_time_reason;
@@ -46,11 +48,15 @@ public class Attendance {
 	@Column(name = "out_time_reason")
 	public String out_time_reason;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
-	public Timestamp created_date;
-
+	@DateTimeFormat(pattern="yyyy/mm/dd hh:mm:ss")
+	protected java.util.Date created_date;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date")
-	public Timestamp updated_date;
+	@DateTimeFormat(pattern="yyyy/mm/dd hh:mm:ss")
+	protected java.util.Date updated_date;
 
 	@ManyToOne
 	@JoinColumn(name = "emp_id", nullable = false)
@@ -72,11 +78,13 @@ public class Attendance {
 		this.employee_id = employee_id;
 	}
 
-	public Date getDate() {
+	
+	
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -88,19 +96,19 @@ public class Attendance {
 		this.day = day;
 	}
 
-	public Time getIn_time() {
+	public String getIn_time() {
 		return in_time;
 	}
 
-	public void setIn_time(Time in_time) {
+	public void setIn_time(String in_time) {
 		this.in_time = in_time;
 	}
 
-	public Time getOut_time() {
+	public String getOut_time() {
 		return out_time;
 	}
 
-	public void setOut_time(Time out_time) {
+	public void setOut_time(String out_time) {
 		this.out_time = out_time;
 	}
 
@@ -120,19 +128,19 @@ public class Attendance {
 		this.out_time_reason = out_time_reason;
 	}
 
-	public Timestamp getCreated_date() {
+	public java.util.Date getCreated_date() {
 		return created_date;
 	}
 
-	public void setCreated_date(Timestamp created_date) {
+	public void setCreated_date(java.util.Date created_date) {
 		this.created_date = created_date;
 	}
 
-	public Timestamp getUpdated_date() {
+	public java.util.Date getUpdated_date() {
 		return updated_date;
 	}
 
-	public void setUpdated_date(Timestamp updated_date) {
+	public void setUpdated_date(java.util.Date updated_date) {
 		this.updated_date = updated_date;
 	}
 
@@ -142,6 +150,6 @@ public class Attendance {
 
 	public void setEmp(Employee emp) {
 		this.emp = emp;
-	}
+	}	
 
 }

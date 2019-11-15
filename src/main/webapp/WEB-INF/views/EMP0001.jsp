@@ -2,9 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />"
 	rel="stylesheet">
@@ -13,40 +15,44 @@
 <link href="<c:url value="/resources/css/common.css" />"
 	rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 <title>New Employee</title>
 <script>
 	//function and design for password in Edit form 
 	document.getElementById("editlink").style.cursor = "pointer";
 	function enable() {
-		document.getElementById('disablepassword').style.backgroundColor = "white";
-		document.getElementById('disablepassword').style.pointerEvents = "auto";
+		document.getElementById('dark').style.backgroundColor = "white";
+		document.getElementById('dark').style.pointerEvents = "auto";
 	}
-	
+
 	//Calculate Age and DateOfBirth Pattern
-	function ageCount() {
+	 function ageCount() {
 		var date1 = new Date();
 		var DOB = document.getElementById("DOB").value;
 		var date2 = new Date(DOB);
-		var pattern = /^\d{4}\/\d{1,2}\/\d{1,2}$/;				/* /^\d{1,2}\/\d{1,2}\/\d{4}$/ */
-		 //Regex to validate date format (yyyy/mm/dd)       
+		//Regex to validate date format (yyyy/mm/dd)  
+		var pattern = /^\d{4}\/\d{1,2}\/\d{1,2}$/; /* /^\d{1,2}\/\d{1,2}\/\d{4}$/ */
 		if (pattern.test(DOB)) {
-			var y1 = date1.getFullYear();
-			//getting current year            
-			var y2 = date2.getFullYear();
-			//getting dob year            
-			var age = y1 - y2;
-			//calculating age                       
-			document.getElementById("ageId").value = age;
-			doucment.getElementById("ageId").focus();
+			//getting current year
+			var currentYear = date1.getFullYear();
+			//alert(" CurrentYear " + date1.getFullYear());
+			//getting dob year           
+			var dobYear = date2.getFullYear();
+			//calculating age         
+			var age = currentYear - dobYear;
+			document.getElementById("ageCalc").value = age;
+			doucment.getElementById("ageCalc").focus();
 			return true;
 		} else {
-			alert("Invalid date format. Please Input in (yyyy/mm/dd) format!");
+			alert("Please insert 'yyyy/mm/dd(1999/01/01)' format!");
 			return false;
 		}
-	}
+	} 
+	
 </script>
-
 </head>
 <body>
 
@@ -56,7 +62,8 @@
 	</div>
 
 	<div class="topnav">
-		<a href="#">Logout</a> <a> Employee ID:<br>Employee Name:
+		<a href="logout">Logout</a> <a> Employee ID: ${auth.employee_id}<br>Employee
+			Name: ${auth.employee_name}
 		</a> <br>
 	</div>
 
@@ -81,7 +88,7 @@
 					<form:label path="password" class="col-sm-4 col-form-label">Password (<span>*</span>)</form:label>
 					<div class="col-sm-4">
 						<form:input path="password" class="form-control form-control-sm"
-							id="password" />
+							id="light" />
 					</div>
 				</div>
 				<%
@@ -92,7 +99,7 @@
 					<form:label path="password" class="col-sm-4 col-form-label">Password (<span>*</span>)</form:label>
 					<div class="col-sm-4">
 						<form:input showPassword="true" path="password"
-							class="form-control form-control-sm" id="disablepassword" />
+							class="form-control form-control-sm" id="dark"/>
 					</div>
 					<div class="col-sm-2">
 						<a id="editlink" onclick="enable()"><u>Edit</u></a>
@@ -106,15 +113,16 @@
 					<form:label path="dateOfBirth" class="col-sm-4 col-form-label">Date Of Birth </form:label>
 					<div class="col-sm-4">
 						<form:input path="dateOfBirth"
-							class="form-control form-control-sm" placeholder="yyyy/mm/dd" />
+							class="form-control form-control-sm" placeholder="yyyy/mm/dd"
+							onblur="ageCount()" id="DOB" />
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<form:label path="age" class="col-sm-4 col-form-label">Age </form:label>
 					<div class="col-sm-4">
-						<form:input path="age" class="form-control form-control-sm"
-							id="box" disabled="true" />
+					<form:input path="age" class="form-control form-control-sm"
+					id="ageCalc" readOnly="true" />
 					</div>
 				</div>
 
@@ -142,8 +150,8 @@
 					<label for="button" class="col-sm-4 col-form-label"> </label>
 					<div class="col-sm-6">
 						<button type="submit" class="btn btn-secondary btn-sm">Save</button>
-						
-						<button type="button" class="btn btn-secondary btn-sm">Back</button>
+
+						<button type="button" class="btn btn-secondary btn-sm"  onclick="javascript:history.go(-1)">Back</button>
 						<%
 							String password1 = request.getParameter("id");
 								if (password1 == null) {
@@ -158,8 +166,6 @@
 			</form:form>
 		</div>
 	</div>
-
-
 
 	<script src="<c:url value="/webjars/jquery/3.4.1/jquery.min.js" />"></script>
 	<script

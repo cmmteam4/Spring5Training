@@ -51,9 +51,15 @@ th {
 #editlink{
 	cursor: pointer;
 }
-#password{
+#dark{
 	pointer-events: none;
 	background-color: lightgrey;
+}
+
+.btn{
+	color: black;
+	background-color: #D3D3D3;
+	border-color: #D3D3D3;
 }
 
 
